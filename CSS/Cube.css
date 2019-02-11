@@ -1,0 +1,44 @@
+.container {
+  width:200px;
+  height:200px;
+  perspective: 800px;
+	perspective-origin: 50% 100px;
+  margin:100px auto;
+}
+
+.cube {
+	position: relative;
+	width: 200px;
+	transform-style: preserve-3d;
+  animation: spin 20s infinite linear;
+}
+
+.cube div {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+}
+
+.back {
+	transform: translateZ(-100px) rotateY(180deg);
+  background-color:#777;
+}
+.right {
+	transform: rotateY(-270deg) translateX(100px);
+	transform-origin: top right;
+  background-color:#534;
+}
+.left {
+	transform: rotateY(270deg) translateX(-100px);
+	transform-origin: center left;
+  background-color:#152;
+}
+.front {
+	transform: translateZ(100px);
+  background-color:#880;
+}
+
+@keyframes spin {
+	from { transform: rotateY(0); }
+	to { transform: rotateY(360deg); }
+}
