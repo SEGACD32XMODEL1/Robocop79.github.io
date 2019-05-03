@@ -32,6 +32,162 @@
 	
 </head>
 
-<h1 class="w3-display-middle" style="font-family: 'AmericanText';">
+<h1 class="w3-display-middle" style="font-family: 'PS1';">
 404
 </h1>
+
+<div id="video-player" class="fullscreen-bg">
+	<video class="fullscreen-bg__video" autoplay poster="img/BLUE_DOTS.jpg">
+		<source src="https://robocop79.github.io/video/PS2SS.mp4" type="video/mp4">
+		
+	</video>
+	<div class="fullscreen-bg__playlist">
+		<a href="https://robocop79.github.io/video/ps2rsod.mp4" class="current-video"></a>
+		<a href="https://robocop79.github.io/video/ps2rsodloop.mp4"></a>
+		<a href="https://robocop79.github.io/video/ps2rsodloop.mp4"></a>
+		<a href="https://robocop79.github.io/video/ps2rsodloop.mp4"></a>
+		<a href="https://robocop79.github.io/video/ps2rsodloop.mp4"></a>
+		<a href="https://robocop79.github.io/video/ps2rsodloop.mp4"></a>
+		<a href="https://robocop79.github.io/video/ps2rsodloop.mp4"></a>
+		<a href="https://robocop79.github.io/video/ps2rsodloop.mp4"></a>
+		<a href="https://robocop79.github.io/video/ps2rsodloop.mp4"></a>
+		<a href="https://robocop79.github.io/video/ps2rsodloop.mp4"></a>
+		<a href="https://robocop79.github.io/video/ps2rsodloop.mp4"></a>
+	</div>
+</div>
+
+<style>
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+.content {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 960px;
+    padding: 30px 40px;
+    background: rgba(0,0,0,0.35);
+}
+
+h1 {
+    margin: 0 0 20px 0;
+    padding: 0;
+    font-size: 50px;
+    text-align: center;
+}
+
+p {
+    margin: 0 0 30px 0;
+    font-size: 22px;
+    line-height: 1.4;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.fullscreen-bg__playlist {
+	display: none;
+}
+
+@media (min-aspect-ratio: 16/9) {
+    .fullscreen-bg__video {
+        height: 300%;
+        top: -100%;
+    }
+}
+
+@media (max-aspect-ratio: 16/9) {
+    .fullscreen-bg__video {
+        width: 300%;
+        left: -100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .fullscreen-bg {
+        background: url('../img/BLUE_DOTS.jpg') center center / cover no-repeat;
+    }
+
+    .fullscreen-bg__video {
+        display: none;
+    }
+}	
+</style>
+
+<script>
+( function() {
+	/* Variables */
+	var videoPlayer = document.getElementById( 'video-player' ),
+		video = videoPlayer.getElementsByClassName( 'fullscreen-bg__video' )[0],
+		playlist = videoPlayer.getElementsByClassName( 'fullscreen-bg__playlist' )[0],
+		source = video.getElementsByTagName( 'source' ),
+		linkList = [],
+		videoDirectory = 'video/',
+		currentVideo = 0,
+		allLinks = playlist.children,
+		linkNumber = allLinks.length,
+		i, filename;
+​
+	/**
+	 * Load and play video
+	 * @param  int index Video index
+	 */
+	function playVideo( index ) {
+		allLinks[index].classList.add( 'current-video' );
+		currentVideo = index;
+​
+		source[2].src = videoDirectory + linkList[index] + '.ogv';
+		source[1].src = videoDirectory + linkList[index] + '.webm';
+		source[0].src = videoDirectory + linkList[index] + '.mp4';
+​
+		video.load();
+		video.play();
+	}
+​
+	// Save all video sources from playlist
+	for ( i = 0; i < linkNumber; i++ ) {
+		filename = allLinks[i].href;
+		linkList[i] = filename.match( /([^\/]+)(?=\.\w+$)/ )[0];
+	}
+​
+	/**
+	 * Play next video
+	 */
+	video.addEventListener( 'ended', function () {
+		allLinks[currentVideo].classList.remove( 'current-video' );
+​
+		nextVideo = currentVideo + 1;
+		if ( nextVideo >= linkNumber ) {
+			nextVideo = 0;
+		}
+​
+		playVideo( nextVideo );
+	} );
+​
+} () );
+</script>
