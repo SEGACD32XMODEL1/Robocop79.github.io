@@ -64,7 +64,7 @@ BackgroundVideo.prototype = {
         e.className = "flexible";
         e.preload = "none";
         e.loop = false;
-        e.muted = false;
+        e.muted = true;
         if (this.videoCounter > 1) {
             e.style.display = "none";
         }
@@ -127,3 +127,38 @@ BackgroundVideo.prototype = {
     }
 
 }
+
+/**
+ Usage:
+ 
+ container [optional]: id of the element, where to add video background. 
+ If ommited video background is added to the BODY element.
+ 
+ video: list of video files
+ Note: If you have one video in different formats (mp4, webm, ogv, etc)
+ you can add them all to ensure browser compatibility.
+ Use 'formats' option to list all additional formats.
+ 
+ mobileImg: image file for mobile users. To save traffic mobile users see a still image instead of video.
+ 
+ 
+ new BackgroundVideo({
+ // container: "myId",
+ 
+ video: [
+ {
+ file: "video/SampleVideo_1280x720_1mb.mp4"
+ },
+ {
+ file: "video/Hello-World.ogv",
+ formats: [ "mp4", "webm" ]
+ },
+ {
+ file: "video/OneBigCircle-HD.mp4.mp4"
+ }
+ ],
+ 
+ mobileImg: "img/Hello-World.jpg"
+ });
+ 
+ */
