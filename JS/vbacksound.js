@@ -64,7 +64,7 @@ BackgroundVideo.prototype = {
         e.className = "flexible";
         e.preload = "none";
         e.loop = false;
-        e.muted = true;
+        e.muted = false;
         if (this.videoCounter > 1) {
             e.style.display = "none";
         }
