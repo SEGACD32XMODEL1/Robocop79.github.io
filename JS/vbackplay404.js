@@ -8,4 +8,6 @@ new BackgroundVideo({
         {file: "https://robocop79.github.io/video/rsodloopgood.mp4"}
     ],
     mobileImg: "https://robocop79.github.io/images/Subscribe.png"
+    
+    overlay: "https://robocop79.github.io/images/crt.png"
 });
