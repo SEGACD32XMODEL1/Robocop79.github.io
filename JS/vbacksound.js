@@ -7,7 +7,7 @@ function BackgroundVideo(options) {
     }
     this.currentItem = -1;
     this.videoCounter = 0;
-  this.videos = new Array([]);
+    this.videos = new Array();
 
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         if (options.mobileImg !== undefined) {
@@ -32,6 +32,7 @@ function BackgroundVideo(options) {
         this.container.appendChild(overlayDiv);
     }
 }
+;
 
 BackgroundVideo.prototype = {
     // Implement the `EventListener` interface   
@@ -125,7 +126,7 @@ BackgroundVideo.prototype = {
         }
     }
 
-};
+}
 
 /**
  Usage:
