@@ -1,3 +1,1 @@
-<h1>
 Sandwich Images
-</h1>
